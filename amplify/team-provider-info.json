@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bdgs2-dev-172506-authRole",
+      "UnauthRoleArn": "arn:aws:iam::301263550390:role/amplify-bdgs2-dev-172506-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::301263550390:role/amplify-bdgs2-dev-172506-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-bdgs2-dev-172506-deployment",
+      "UnauthRoleName": "amplify-bdgs2-dev-172506-unauthRole",
+      "StackName": "amplify-bdgs2-dev-172506",
+      "StackId": "arn:aws:cloudformation:us-east-2:301263550390:stack/amplify-bdgs2-dev-172506/2af61950-a02c-11ed-a28a-0a40db634cb4",
+      "AmplifyAppId": "d28x804ksgy9j1"
+    },
+    "categories": {
+      "auth": {
+        "bdgs225d5f410": {}
+      }
+    }
+  }
+}
