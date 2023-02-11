@@ -10,7 +10,7 @@ Amplify.configure(awsExports);
 
 
 const styles = {
-  container: { width: 750, margin: '0 auto', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 100 },
+  container: {padding: 100 },
 }
 
 export default function App(){
