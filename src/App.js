@@ -1,9 +1,8 @@
 import './App.css';
-
+import logo from './img/AI_logo.png';
 import { Amplify } from 'aws-amplify';
 
-
-import {Authenticator, View, Image, useTheme} from '@aws-amplify/ui-react';
+import {Authenticator, View, Image, useTheme, Heading} from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
 import awsExports from './aws-exports';
@@ -15,13 +14,28 @@ const components = {
 
     return (
       <View textAlign="center" padding={tokens.space.large}>
-        <Image
+        <Image width="50%"
+          height="50%"
           alt="Adavanced Intralogistics logo"
-          src="/img/AI_logo.png"
+          src={logo}
         />
       </View>
     );
-  }
+  },
+  SignIn: {
+    Header() {
+      const { tokens } = useTheme();
+
+      return (
+        <Heading
+          padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`}
+          level={3}
+        >
+          Sign in to Home App
+        </Heading>
+      );
+    },
+  },
 };
 
 export default function App(){
