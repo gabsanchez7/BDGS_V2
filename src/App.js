@@ -1,13 +1,16 @@
 import './App.css';
 import logo from './img/AI_logo.png';
 import { Amplify } from 'aws-amplify';
-
+import { Routes, Route } from 'react-router-dom';
+import { Home } from './pages/home';
 
 import {Authenticator, View, Image, useTheme, Heading, Button, Flex, ThemeProvider} from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
+import { SignIn } from './pages/signin';
+import { Ring } from './pages/ring';
 
-import awsExports from './aws-exports';
-Amplify.configure(awsExports);
+//import awsExports from './aws-exports';
+//Amplify.configure(awsExports);
 
 const components = {
   Header() {
@@ -60,16 +63,11 @@ const myTheme = {
 export default function App(){
   return (
     <ThemeProvider theme={myTheme}>
-    <Authenticator hideSignUp={true} components={components}>
-        {({ signOut, user }) => (
-          <main>
-            <Flex justifyContent={'right'} size>
-              <Button onClick={signOut}>Sign out</Button>
-            </Flex>
-            <h2>Hello {user.attributes.email}</h2>
-          </main>
-        )}
-    </Authenticator>
+    <Routes>
+    <Route path="/home" element={<Home />} />
+    <Route path="/" element={<SignIn />} />
+    <Route path="/ring" element={<Ring />} />
+    </Routes>
     </ThemeProvider>
   );
 }
