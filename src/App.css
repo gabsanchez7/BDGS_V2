@@ -37,3 +37,6 @@
   }
 }
 
+.amplify-button[data-variation='primary'] {
+  background-color: red
+}
