@@ -1,13 +1,23 @@
 import './App.css';
 import logo from './img/AI_logo.png';
 import { Amplify } from 'aws-amplify';
-
+import React from 'react';
 
 import {Authenticator, View, Image, useTheme, Button, Flex, ThemeProvider, Grid, Card} from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
 import awsExports from './aws-exports';
+import axios from 'axios';
 Amplify.configure(awsExports);
+
+function test(){
+  axios.post('https://entfv7ccep2gyljgp6jqchzibm0mfucu.lambda-url.us-east-2.on.aws/',{headers: {"Access-Control-Allow-Origin": "*"}})
+  .then((response) => {
+    console.log(response);
+  }, (error) => {
+    console.log(error);
+  });
+}
 
 const components = {
   Header() {
@@ -81,7 +91,10 @@ export default function App(){
     rowStart="1"
     rowEnd="20"
   >
-    Brivo
+    <a href="https://access.brivo.com/events">
+          brivo
+    </a>
+    <button onClick={test()}>Authenticate</button>
   </Card>
   </Grid>
           </main>
