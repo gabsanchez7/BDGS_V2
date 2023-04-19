@@ -7,17 +7,27 @@ import {Authenticator, View, Image, useTheme, Button, Flex, ThemeProvider, Grid,
 import '@aws-amplify/ui-react/styles.css';
 
 import awsExports from './aws-exports';
-import axios from 'axios';
 Amplify.configure(awsExports);
 
-function test(){
-  axios.post('https://entfv7ccep2gyljgp6jqchzibm0mfucu.lambda-url.us-east-2.on.aws/',{headers: {"Access-Control-Allow-Origin": "*"}})
-  .then((response) => {
-    console.log(response);
-  }, (error) => {
-    console.log(error);
-  });
+
+
+
+async function sendPost() {
+
+  const url = "https://entfv7ccep2gyljgp6jqchzibm0mfucu.lambda-url.us-east-2.on.aws/";
+
+  const params = {
+      method: "POST",
+      mode: "no-cors",
+      headers: {"Content-Type":"application/json"}
+  };
+
+  const response = await fetch(url,params);
+  const code = response;
+  console.log(code);
+  window.alert("Door Open");
 }
+
 
 const components = {
   Header() {
@@ -94,7 +104,7 @@ export default function App(){
     <a href="https://access.brivo.com/events">
           brivo
     </a>
-    <button onClick={test()}>Authenticate</button>
+    <button onClick={sendPost}>Authenticate</button>
   </Card>
   </Grid>
           </main>
