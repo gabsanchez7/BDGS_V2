@@ -3,7 +3,7 @@ import logo from './img/AI_logo.png';
 import { Amplify } from 'aws-amplify';
 import React from 'react';
 
-import {Authenticator, View, Image, useTheme, Button, Flex, ThemeProvider, Grid, Card} from '@aws-amplify/ui-react';
+import {Authenticator, View, Image, useTheme, Button, Flex, ThemeProvider, Grid, Card, Alert, Text, Expander, ExpanderItem } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
 import awsExports from './aws-exports';
@@ -13,7 +13,8 @@ Amplify.configure(awsExports);
 
 
 async function sendPost() {
-
+  var unlock = document.getElementById("unlock");
+  unlock.classList.toggle("button--loading");
   const url = "https://entfv7ccep2gyljgp6jqchzibm0mfucu.lambda-url.us-east-2.on.aws/";
 
   const params = {
@@ -25,6 +26,21 @@ async function sendPost() {
   const response = await fetch(url,params);
   const code = response;
   console.log(code);
+  unlock.classList.remove("button--loading");
+  window.alert("Door Open");
+}
+
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+async function loading(){
+  var unlock = document.getElementById("unlock");
+  unlock.classList.toggle("button--loading");
+  await sleep(3000);
+  unlock.classList.remove("button--loading");
   window.alert("Door Open");
 }
 
@@ -77,37 +93,64 @@ export default function App(){
     <Authenticator hideSignUp={true} components={components}>
         {({ signOut, user }) => (
           <main>
-            <Flex justifyContent={'right'} size>
-              <Button onClick={signOut}>Sign out</Button>
-            </Flex>
-            <h2>Hello {user.attributes.email}</h2>
-            <Grid
-  columnGap="0.5rem"
-  rowGap="0.5rem"
-  templateColumns="1fr 1fr 1fr"
-  templateRows="1fr 3fr 1fr"
->
-  <Card
-    columnStart="1"
-    columnEnd="3"
-    rowStart="1"
-    rowEnd="40"
-  >
-    Ring
-  </Card>
-  <Card
-    columnStart="3"
-    columnEnd="-1"
-    rowStart="1"
-    rowEnd="20"
-  >
-    <a href="https://access.brivo.com/events">
-          brivo
-    </a>
-    <button onClick={sendPost}>Authenticate</button>
-  </Card>
-  </Grid>
-          </main>
+              <Flex justifyContent={'left'} size>
+                  <Image width="7%"
+                  height="7%"
+                  alt="Adavanced Intralogistics logo"
+                  src={logo}
+                />
+                <Text>Home App</Text>
+              </Flex>
+              <Grid
+              columnGap="0.5rem"
+              rowGap="0.5rem"
+              templateColumns="1fr 1fr 1fr"
+              templateRows="1fr 3fr 1fr"
+            >
+              <Card
+                columnStart="1"
+                columnEnd="-1"
+              >
+                
+              <Flex justifyContent="space-between">
+                <Text>
+                  Hello {user.attributes.email}
+                </Text>
+                <Button size="small" onClick={signOut}>Sign out</Button>
+              </Flex>
+              </Card>
+              <Card
+                columnStart="1"
+                columnEnd="2"
+              >
+              <Expander type="single">
+              <ExpanderItem title="How to use brivo button" value="item-1">
+                Click the red button labeled "unlock door" once the door is unlocked
+                a message will be prompted. (NOTE: Only click the button once)
+              </ExpanderItem>
+              <ExpanderItem title="Credentials for HomeAssistant" value="item-2">
+                Username: HOMEAPP, Password: Forklift@23                
+              </ExpanderItem>
+            </Expander>
+              <Flex paddingTop="50px" justifyContent="center">
+                  <button type="button" class="button" id="unlock" onClick={sendPost}>
+                    <span class="button__text">Unlock Door</span>
+                  </button>
+              </Flex>
+              </Card>
+              <Card
+                columnStart="2"
+                columnEnd="-1"
+                rowStart="2"
+                rowEnd="50"
+              >
+              <flex>
+              <iframe src="http://192.168.4.51:8123" name="HOMEAPP" allowTransparency="true" width="100%" height="100%" >
+              </iframe>
+              </flex>
+              </Card>
+            </Grid>
+        </main>
         )}
     </Authenticator>
     </ThemeProvider>
