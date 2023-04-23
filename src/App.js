@@ -145,7 +145,7 @@ export default function App(){
                 rowEnd="50"
               >
               <flex>
-              <iframe src="http://192.168.4.51:8123" name="HOMEAPP" allowTransparency="true" width="100%" height="100%" >
+              <iframe src="https://www.google.com" name="HOMEAPP" allowTransparency="true" width="100%" height="100%" >
               </iframe>
               </flex>
               </Card>
