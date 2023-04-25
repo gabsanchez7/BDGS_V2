@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import './App.css';
 import logo from './img/AI_logo.png';
 import { Amplify } from 'aws-amplify';
